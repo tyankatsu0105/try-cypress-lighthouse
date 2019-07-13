@@ -24,12 +24,9 @@ stages:
   - name: Unit Test
   - name: E2E Test
 
-before_script:
-  - yarn start --silent &
-
 jobs:
   include:
     - stage: Unit Test
       script: yarn test:unit
     - stage: E2E Test
-      script: yarn test:e2e
+      script: yarn test:e2e --headless
