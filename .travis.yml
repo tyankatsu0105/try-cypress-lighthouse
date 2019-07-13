@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - 11
+
+dist: trusty
+sudo: false
+cache: yarn
+
+branches:
+  only:
+    - master
+
+stages:
+  - name: Unit Test
+  - name: E2E Test
+
+jobs:
+  include:
+    - stage: Unit Test
+      script: yarn test:unit
+    - stage: E2E Test
+      script: yarn test:e2e --headless
