@@ -4,7 +4,17 @@ node_js:
 
 dist: trusty
 sudo: false
-cache: yarn
+cache: 
+  yarn: true
+  directories:
+    # we also need to cache folder with Cypress binary
+    - ~/.cache
+
+addons:
+  apt:
+    packages:
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      - libgconf-2-4
 
 branches:
   only:
@@ -19,4 +29,4 @@ jobs:
     - stage: Unit Test
       script: yarn test:unit
     - stage: E2E Test
-      script: yarn test:e2e --headless
+      script: yarn test:e2e --record
