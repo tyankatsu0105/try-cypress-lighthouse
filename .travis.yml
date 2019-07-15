@@ -4,7 +4,12 @@ node_js:
 
 dist: trusty
 sudo: false
-cache: yarn
+cache: 
+  yarn: true
+  npm: true
+  directories:
+    # we also need to cache folder with Cypress binary
+    - ~/.cache
 
 branches:
   only:
@@ -19,4 +24,6 @@ jobs:
     - stage: Unit Test
       script: yarn test:unit
     - stage: E2E Test
+      install:
+        - npm ci
       script: yarn test:e2e --headless
