@@ -14,4 +14,16 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  const PATH = 'cypress'
+
+  return Object.assign({}, config, {
+    fixturesFolder: `${PATH}/fixtures`,
+    integrationFolder: `${PATH}/specs`,
+    screenshotsFolder: `${PATH}/screenshots`,
+    videosFolder: `${PATH}/videos`,
+    supportFile: `${PATH}/support/index.js`
+  });
 }
+
+
